@@ -5,4 +5,4 @@ RuleTester.setDefaultConfig({
   parser: "@typescript-eslint/parser",
 });
 
-RuleTester.afterAll = () => {}
+RuleTester.afterAll = () => {};
