@@ -13,10 +13,10 @@
 ```ts
 @Controller("user")
 class UserController {
-    @Get("route/:id")
-    getRouteById(@Param("invalid") invalid: string) {}
+  @Get("route/:id")
+  getRouteById(@Param("invalid") invalid: string) {}
 
-    notARoute(@Param("id") id: string) {}
+  notARoute(@Param("id") id: string) {}
 }
 ```
 
@@ -25,12 +25,12 @@ class UserController {
 ```ts
 @Controller("user")
 class UserController {
-    @Get("route/:id")
-    getRouteById(@Param("id") invalid: string) {}
+  @Get("route/:id")
+  getRouteById(@Param("id") invalid: string) {}
 
-    notARoute(id: string) {}
-    // OR
-    @Post("route/:id")
-    notARoute(@Param("id") id: string) {}
+  notARoute(id: string) {}
+  // OR
+  @Post("route/:id")
+  notARoute(@Param("id") id: string) {}
 }
 ```

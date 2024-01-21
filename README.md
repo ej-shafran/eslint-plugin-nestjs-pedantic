@@ -49,10 +49,10 @@ module.exports = {
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).\
 💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 
-| Name                                                             | Description                                    | 💼   | 🔧 | 💡 |
-| :--------------------------------------------------------------- | :--------------------------------------------- | :--- | :- | :- |
-| [match-methods-to-routes](docs/rules/match-methods-to-routes.md) | Match method names to the decorated API routes | 🌐 ✅ | 🔧 |    |
-| [route-convention](docs/rules/route-convention.md)               | Keep a convention when decorating routes       | 🌐 ✅ | 🔧 | 💡 |
-| [safe-route-params](docs/rules/safe-route-params.md)             | Ensure safe usage of the `@Param` decorator    | 🌐   | 🔧 | 💡 |
+| Name                                                             | Description                                    | 💼    | 🔧  | 💡  |
+| :--------------------------------------------------------------- | :--------------------------------------------- | :---- | :-- | :-- |
+| [match-methods-to-routes](docs/rules/match-methods-to-routes.md) | Match method names to the decorated API routes | 🌐 ✅ | 🔧  |     |
+| [route-convention](docs/rules/route-convention.md)               | Keep a convention when decorating routes       | 🌐 ✅ | 🔧  | 💡  |
+| [safe-route-params](docs/rules/safe-route-params.md)             | Ensure safe usage of the `@Param` decorator    | 🌐    | 🔧  | 💡  |
 
 <!-- end auto-generated rules list -->
