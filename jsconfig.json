@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/jsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "checkJs": true,
+    "strict": true
+  }
+}
