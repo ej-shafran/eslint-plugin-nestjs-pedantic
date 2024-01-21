@@ -39,6 +39,8 @@ module.exports = {
 };
 ```
 
+## Rules
+
 <!-- begin auto-generated rules list -->
 
 💼 Configurations enabled in.\
