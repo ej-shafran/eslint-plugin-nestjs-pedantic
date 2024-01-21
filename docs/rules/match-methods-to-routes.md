@@ -13,11 +13,11 @@
 ```ts
 @Controller("user")
 class UserController {
-    @Get("route")
-    someRandomName() {}
+  @Get("route")
+  someRandomName() {}
 
-    @Post("other-route/:userId")
-    someOtherRandomName() {}
+  @Post("other-route/:userId")
+  someOtherRandomName() {}
 }
 ```
 
@@ -26,10 +26,10 @@ class UserController {
 ```ts
 @Controller("user")
 class UserController {
-    @Get("route")
-    getRoute() {}
+  @Get("route")
+  getRoute() {}
 
-    @Post("other-route/:userId")
-    postOtherRouteByUserId() {}
+  @Post("other-route/:userId")
+  postOtherRouteByUserId() {}
 }
 ```

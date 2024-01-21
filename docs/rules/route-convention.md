@@ -13,14 +13,14 @@
 ```ts
 @Controller("user")
 class UserController {
-    @Get("/trailing")
-    getTrailing() {}
+  @Get("/trailing")
+  getTrailing() {}
 
-    @Post("other-side/")
-    postOtherSide() {}
+  @Post("other-side/")
+  postOtherSide() {}
 
-    @Patch("/both-sides/")
-    patchBothSides() {}
+  @Patch("/both-sides/")
+  patchBothSides() {}
 }
 ```
 
@@ -29,13 +29,13 @@ class UserController {
 ```ts
 @Controller("user")
 class UserController {
-    @Get("trailing")
-    getTrailing() {}
+  @Get("trailing")
+  getTrailing() {}
 
-    @Post("other-side")
-    postOtherSide() {}
+  @Post("other-side")
+  postOtherSide() {}
 
-    @Patch("both-sides")
-    patchBothSides() {}
+  @Patch("both-sides")
+  patchBothSides() {}
 }
 ```
