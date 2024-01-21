@@ -53,6 +53,6 @@ module.exports = {
 | :------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------- | :--- | :- | :- |
 | [match-methods-to-routes](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/match-methods-to-routes) | Match method names to the decorated API routes | 🌐 ✅ | 🔧 |    |
 | [route-convention](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/route-convention)               | Keep a convention when decorating routes       | 🌐 ✅ | 🔧 | 💡 |
-| [safe-route-params](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/safe-route-params)             | Ensure safe usage of the `@Param` decorator    | 🌐   | 🔧 | 💡 |
+| [safe-route-params](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/safe-route-params)             | Ensure safe usage of the `@Param` decorator    | 🌐   |    | 💡 |
 
 <!-- end auto-generated rules list -->
