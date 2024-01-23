@@ -1,6 +1,6 @@
 # Ensure safe usage of the `@Param` decorator (`nestjs-pedantic/safe-route-params`)
 
-💼 This rule is enabled in the 🌐 `all` config.
+💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`.
 
 💡 This rule is manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 
