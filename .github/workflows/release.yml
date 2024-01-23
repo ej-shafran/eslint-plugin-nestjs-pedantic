@@ -19,7 +19,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: step-security/harden-runner@v1
+      - uses: step-security/harden-runner@v2
         with:
           allowed-endpoints: api.github.com:443
             github.com:443
@@ -29,9 +29,9 @@ jobs:
         run: echo "current_version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: mindsers/changelog-reader-action@v2
+      - uses: mindsers/changelog-reader-action@v2.2.2
         id: changelog_reader
         with:
           version: ${{ steps.tag_name.outputs.current_version }}
@@ -50,7 +50,7 @@ jobs:
           echo "$_links" >> "${GITHUB_OUTPUT}"
           echo "${DELIMITER}" >> "${GITHUB_OUTPUT}"
 
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v0.1.15
         with:
           body: |
             ${{ steps.changelog_reader.outputs.changes }}
@@ -63,9 +63,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Setup PNPM
@@ -77,7 +77,7 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
       - name: Setup PNPM cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -101,9 +101,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: "https://registry.npmjs.org"
@@ -117,7 +117,7 @@ jobs:
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
       - name: Setup PNPM cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
