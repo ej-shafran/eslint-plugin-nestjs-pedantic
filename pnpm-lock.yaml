@@ -18,7 +18,7 @@ devDependencies:
     version: 18.4.4
   '@commitlint/types':
     specifier: ^18.4.4
-    version: 18.4.4
+    version: 18.6.0
   '@types/node':
     specifier: ^20.11.5
     version: 20.11.5
@@ -267,7 +267,7 @@ packages:
       '@commitlint/lint': 18.4.4
       '@commitlint/load': 18.4.4(@types/node@20.11.5)(typescript@5.3.3)
       '@commitlint/read': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       execa: 5.1.1
       lodash.isfunction: 3.0.9
       resolve-from: 5.0.0
@@ -289,7 +289,7 @@ packages:
     resolution: {integrity: sha512-/QI8KIg/h7O0Eus36fPcEcO3QPBcdXuGfZeCF5m15k0EB2bcU8s6pHNTNEa6xz9PrAefHCL+yzRJj7w20T6Mow==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       ajv: 8.12.0
     dev: true
 
@@ -297,7 +297,7 @@ packages:
     resolution: {integrity: sha512-KjD19p6julB5WrQL+Cd8p+AePwpl1XzGAjB0jnuFMKWtji9L7ucCZUKDstGjlkBZGGzH/nvdB8K+bh5K27EVUg==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       lodash.camelcase: 4.3.0
       lodash.kebabcase: 4.1.1
       lodash.snakecase: 4.1.1
@@ -314,7 +314,7 @@ packages:
     resolution: {integrity: sha512-2v3V5hVlv0R3pe7p66IX5F7cjeVvGM5JqITRIbBCFvGHPJ/CG74rjTkAu0RBEiIhlk3eOaLjVGq3d5falPkLBA==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       chalk: 4.1.2
     dev: true
 
@@ -322,7 +322,7 @@ packages:
     resolution: {integrity: sha512-rXWes9owKBTjfTr6Od7YlflRg4N+ngkOH+dUZhk0qL/XQb26mHz0EgVgdixMVBac1OsohRwJaLmVHX+5F6vfmg==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       semver: 7.5.4
     dev: true
 
@@ -333,7 +333,7 @@ packages:
       '@commitlint/is-ignored': 18.4.4
       '@commitlint/parse': 18.4.4
       '@commitlint/rules': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
     dev: true
 
   /@commitlint/load@18.4.4(@types/node@20.11.5)(typescript@5.3.3):
@@ -343,7 +343,7 @@ packages:
       '@commitlint/config-validator': 18.4.4
       '@commitlint/execute-rule': 18.4.4
       '@commitlint/resolve-extends': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.3.3)
       cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.5)(cosmiconfig@8.3.6)(typescript@5.3.3)
@@ -365,7 +365,7 @@ packages:
     resolution: {integrity: sha512-99G7dyn/OoyNWXJni0Ki0K3aJd01pEb/Im/Id6y4X7PN+kGOahjz2z/cXYYHn7xDdooqFVdiVrVLeChfgpWZ2g==}
     engines: {node: '>=v18'}
     dependencies:
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       conventional-changelog-angular: 7.0.0
       conventional-commits-parser: 5.0.0
     dev: true
@@ -375,7 +375,7 @@ packages:
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/top-level': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       git-raw-commits: 2.0.11
       minimist: 1.2.8
     dev: true
@@ -385,7 +385,7 @@ packages:
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/config-validator': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       import-fresh: 3.3.0
       lodash.mergewith: 4.6.2
       resolve-from: 5.0.0
@@ -399,7 +399,7 @@ packages:
       '@commitlint/ensure': 18.4.4
       '@commitlint/message': 18.4.4
       '@commitlint/to-lines': 18.4.4
-      '@commitlint/types': 18.4.4
+      '@commitlint/types': 18.6.0
       execa: 5.1.1
     dev: true
 
@@ -415,8 +415,8 @@ packages:
       find-up: 5.0.0
     dev: true
 
-  /@commitlint/types@18.4.4:
-    resolution: {integrity: sha512-/FykLtodD8gKs3+VNkAUwofu4LBHankclj+I8fB2jTRvG6PV7k/OUt4P+VbM7ip853qS4F0g7Z6hLNa6JeMcAQ==}
+  /@commitlint/types@18.6.0:
+    resolution: {integrity: sha512-oavoKLML/eJa2rJeyYSbyGAYzTxQ6voG5oeX3OrxpfrkRWhJfm4ACnhoRf5tgiybx2MZ+EVFqC1Lw3W8/uwpZA==}
     engines: {node: '>=v18'}
     dependencies:
       chalk: 4.1.2
