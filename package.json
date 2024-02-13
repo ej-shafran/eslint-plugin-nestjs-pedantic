@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic#readme",
   "dependencies": {
-    "@typescript-eslint/utils": "^6.19.0"
+    "@typescript-eslint/utils": "^7.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
