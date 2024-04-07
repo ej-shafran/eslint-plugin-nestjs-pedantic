@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - The [`no-unused-route-params`](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/no-unused-route-params) rule
+- The [`no-duplicate-route-params`](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/no-duplicate-route-params) rule
 
 ## [0.0.3] - 2024-01-23
 
