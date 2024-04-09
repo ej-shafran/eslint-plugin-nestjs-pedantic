@@ -36,7 +36,7 @@ devDependencies:
     version: 1.7.0(eslint@8.57.0)(typescript@5.3.3)
   eslint-plugin-eslint-plugin:
     specifier: ^5.1.1
-    version: 5.5.0(eslint@8.57.0)
+    version: 5.5.1(eslint@8.57.0)
   eslint-plugin-n:
     specifier: ^17.0.0
     version: 17.0.0(eslint@8.57.0)
@@ -1331,8 +1331,8 @@ packages:
       eslint-compat-utils: 0.1.2(eslint@8.57.0)
     dev: true
 
-  /eslint-plugin-eslint-plugin@5.5.0(eslint@8.57.0):
-    resolution: {integrity: sha512-bWIZqdR68CSOOKhjoElE7ELmzGWKYDRLjRDrvkI8wTu85UMUlkkq9CwKncK1oquNSkYbXqL2C+qNwpdYsTEezA==}
+  /eslint-plugin-eslint-plugin@5.5.1(eslint@8.57.0):
+    resolution: {integrity: sha512-9AmfZzcQ7QHwpzfAQpZ7xdtwHYViylmlnruCH0aV64/tuoH3igGXg91vr0e6ShLf/mrAYGqLw5LZ/gOxJeRXnw==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7.0.0'
