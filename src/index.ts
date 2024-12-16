@@ -8,7 +8,7 @@ import noUnusedRouteParams from "./rules/no-unused-route-params.js";
 import noDuplicateRouteParams from "./rules/no-duplicate-route-params.js";
 
 const pkg = JSON.parse(
-  fs.readFileSync(new URL("./package.json", import.meta.url), "utf8"),
+  fs.readFileSync(new URL("../package.json", import.meta.url), "utf8"),
 ) as typeof import("../package.json");
 
 const rules = {
