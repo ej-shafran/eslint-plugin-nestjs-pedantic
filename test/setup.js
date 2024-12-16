@@ -1,4 +1,4 @@
-const { RuleTester } = require("@typescript-eslint/rule-tester");
+import { RuleTester } from "@typescript-eslint/rule-tester";
 
 RuleTester.setDefaultConfig({});
 
