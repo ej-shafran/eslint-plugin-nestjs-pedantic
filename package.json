@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "eslint-plugin-nestjs-pedantic",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An ESLint plugin for NestJS, with pedantic rules",
   "main": "dist/index.js",
   "type": "module",
