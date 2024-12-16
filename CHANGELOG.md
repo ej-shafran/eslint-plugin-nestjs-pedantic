@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.8
+
+### Patch Changes
+
+- 2d3bd61: Fix "require is not defined in ES module scope".
+- bb58d64: Provide proper types for default export.
+
 ## 0.0.7
 
 ### Patch Changes
