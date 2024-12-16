@@ -1,14 +1,10 @@
-const findHttpMethodDecorator = require("../utils/findHttpMethodDecorator");
-const docsUrl = require("../utils/docsUrl");
-
-const { AST_NODE_TYPES } = require("@typescript-eslint/utils");
+import createRule from "../utils/createRule.js";
+import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
+import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 
 const LETTER_REGEX = /^[A-Za-z]$/;
 
-/**
- * @param {string} s
- **/
-function toPascalCase(s) {
+function toPascalCase(s: string) {
   let out = "";
   let capitalize = true;
   for (let i = 0; i < s.length; i++) {
@@ -24,11 +20,7 @@ function toPascalCase(s) {
   return out;
 }
 
-/**
- * @param {string} route
- * @param {string} httpMethod
- **/
-function getMethodName(httpMethod, route) {
+function getMethodName(httpMethod: string, route: string) {
   return (
     httpMethod.toLowerCase() +
     route
@@ -43,20 +35,17 @@ function getMethodName(httpMethod, route) {
   );
 }
 
-const messages = /** @type {const}*/ ({
+const messages = {
   matchMethodsToRoutes:
     "This method should be `{{expected}}` to match `{{definition}}`",
-});
+} as const;
 
-/**
- * @type {import("@typescript-eslint/utils").TSESLint.RuleModule<keyof typeof messages>}
- **/
-module.exports = {
+export default createRule({
+  name: "match-methods-to-routes",
   meta: {
     docs: {
       description: "Match method names to the decorated API routes",
-      recommended: "recommended",
-      url: docsUrl("match-methods-to-routes"),
+      recommended: true,
     },
     type: "suggestion",
     schema: [],
@@ -77,11 +66,14 @@ module.exports = {
         if (recieved === null) return;
 
         const httpMethod = decorator.expression.callee.name;
-        const route =
-          /** @type {import("@typescript-eslint/utils").TSESTree.Literal | undefined} */ (
-            decorator.expression.arguments[0]
-          )?.value ?? "";
+
+        const firstArg = decorator.expression.arguments[0];
+        // TODO: handle array argument to `@Get()`, etc.
+        if (firstArg && firstArg.type !== AST_NODE_TYPES.Literal) return;
+
+        const route = firstArg?.value ?? "";
         if (typeof route !== "string") return;
+
         const expected = getMethodName(httpMethod, route);
 
         if (recieved !== expected) {
@@ -98,4 +90,4 @@ module.exports = {
     };
   },
   defaultOptions: [],
-};
+});

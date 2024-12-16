@@ -1,23 +1,20 @@
-const findHttpMethodDecorator = require("../utils/findHttpMethodDecorator");
-const findParamDecorators = require("../utils/findParamDecorators");
-const docsUrl = require("../utils/docsUrl");
-const { AST_NODE_TYPES } = require("@typescript-eslint/utils");
+import createRule from "../utils/createRule.js";
+import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
+import findParamDecorators from "../utils/findParamDecorators.js";
+import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 
 const messages = {
   unusedRouteParam: "Unused route param `{{param}}`",
   removeRouteParam: "Remove unused route parameter `{{param}}`",
 };
 
-/**
- * @type {import("@typescript-eslint/utils").TSESLint.RuleModule<keyof typeof messages>}
- **/
-module.exports = {
+export default createRule({
+  name: "no-unused-route-params",
   meta: {
     hasSuggestions: true,
     docs: {
       description: "Disallow unused route parameters",
-      recommended: "recommended",
-      url: docsUrl("no-unused-route-params"),
+      recommended: true,
     },
     type: "problem",
     schema: [],
@@ -55,7 +52,8 @@ module.exports = {
           if (
             paramDecorators.some((decorator) => {
               const firstArg = decorator.expression.arguments[0];
-              if (firstArg.type !== AST_NODE_TYPES.Literal) return false;
+              if (!firstArg || firstArg.type !== AST_NODE_TYPES.Literal)
+                return false;
               return firstArg.value === param;
             })
           )
@@ -88,4 +86,5 @@ module.exports = {
       },
     };
   },
-};
+  defaultOptions: [],
+});
