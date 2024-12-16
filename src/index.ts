@@ -1,14 +1,10 @@
-import fs from "fs";
-
 import matchMethodsToRoutes from "./rules/match-methods-to-routes.js";
 import routeConvention from "./rules/route-convention.js";
 import safeRouteParams from "./rules/safe-route-params.js";
 import noUnusedRouteParams from "./rules/no-unused-route-params.js";
 import noDuplicateRouteParams from "./rules/no-duplicate-route-params.js";
 
-const pkg = JSON.parse(
-  fs.readFileSync(new URL("./package.json", import.meta.url), "utf8"),
-);
+const pkg = require("../package.json") as typeof import("../package.json");
 
 const plugin = {
   meta: {
