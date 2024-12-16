@@ -1,5 +1,6 @@
 import fs from "fs";
 
+import { TSESLint } from "@typescript-eslint/utils";
 import matchMethodsToRoutes from "./rules/match-methods-to-routes.js";
 import routeConvention from "./rules/route-convention.js";
 import safeRouteParams from "./rules/safe-route-params.js";
@@ -10,46 +11,51 @@ const pkg = JSON.parse(
   fs.readFileSync(new URL("./package.json", import.meta.url), "utf8"),
 ) as typeof import("../package.json");
 
-const plugin = {
+const rules = {
+  "match-methods-to-routes": matchMethodsToRoutes,
+  "route-convention": routeConvention,
+  "safe-route-params": safeRouteParams,
+  "no-unused-route-params": noUnusedRouteParams,
+  "no-duplicate-route-params": noDuplicateRouteParams,
+};
+
+const plugin: TSESLint.FlatConfig.Plugin = {
   meta: {
     name: pkg.name,
     version: pkg.version,
   },
-  configs: {},
-  rules: {
-    "match-methods-to-routes": matchMethodsToRoutes,
-    "route-convention": routeConvention,
-    "safe-route-params": safeRouteParams,
-    "no-unused-route-params": noUnusedRouteParams,
-    "no-duplicate-route-params": noDuplicateRouteParams,
+  configs: {
+    get recommended() {
+      return recommended;
+    },
+    get all() {
+      return all;
+    },
   },
+  rules,
   processors: {},
 };
 
-const plugins = {
-  "nestjs-pedantic": plugin,
+const recommended: TSESLint.FlatConfig.Config = {
+  plugins: {
+    "nestjs-pedantic": plugin,
+  },
+  rules: {
+    "nestjs-pedantic/match-methods-to-routes": "error",
+    "nestjs-pedantic/route-convention": "error",
+    "nestjs-pedantic/safe-route-params": "error",
+    "nestjs-pedantic/no-unused-route-params": "error",
+    "nestjs-pedantic/no-duplicate-route-params": "error",
+  },
 };
 
-Object.assign(plugin.configs, {
-  recommended: {
-    plugins,
-    rules: {
-      "nestjs-pedantic/match-methods-to-routes": "error",
-      "nestjs-pedantic/route-convention": "error",
-      "nestjs-pedantic/safe-route-params": "error",
-      "nestjs-pedantic/no-unused-route-params": "error",
-      "nestjs-pedantic/no-duplicate-route-params": "error",
-    },
+const all: TSESLint.FlatConfig.Config = {
+  plugins: {
+    "nestjs-pedantic": plugin,
   },
-  all: {
-    plugins,
-    rules: Object.fromEntries(
-      Object.keys(plugin.rules).map((key) => [
-        `nestjs-pedantic/${key}`,
-        "error",
-      ]),
-    ),
-  },
-});
+  rules: Object.fromEntries(
+    Object.keys(rules).map((key) => [`nestjs-pedantic/${key}`, "error"]),
+  ),
+};
 
 export default plugin;
