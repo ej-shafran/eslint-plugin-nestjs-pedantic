@@ -1,5 +1,5 @@
 /** @type {import("@commitlint/types").UserConfig} */
-module.exports = {
+export default {
   extends: ["@commitlint/config-conventional"],
-  ignores: [(commit) => commit.match(/^\d\.\d\.\d$/)],
+  ignores: [(commit) => !!commit.match(/^\d\.\d\.\d$/)],
 };

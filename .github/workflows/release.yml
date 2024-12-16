@@ -2,130 +2,35 @@ name: GitHub Release + Publish Packages
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 jobs:
   release:
-    needs: build
-
-    name: Publish GitHub Release
-
+    name: Release
+    runs-on: ubuntu-latest
     if: github.event.repository.fork == false
 
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
     steps:
-      - uses: step-security/harden-runner@v2
-        with:
-          allowed-endpoints: api.github.com:443
-            github.com:443
-
-      - name: Get version from tag
-        id: tag_name
-        run: echo "current_version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
-        shell: bash
-
-      - uses: actions/checkout@v4
-
-      - uses: mindsers/changelog-reader-action@v2.2.2
-        id: changelog_reader
-        with:
-          version: ${{ steps.tag_name.outputs.current_version }}
-
-      - name: Get common links from changelog
-        id: changelog
-        run: |
-          # Parse the changelog for common links
-          _links="$(grep -P '^\[\D*]:.+' ${GITHUB_WORKSPACE}/CHANGELOG.md | sort -u)"
-          _links="${_links//'%'/'%25'}"
-          _links="${_links//$'\n'/'%0A'}"
-          _links="${_links//$'\r'/'%0D'}"
-          # Set output 'links' to $_links
-          DELIMITER=$(uuidgen)
-          echo "links<<${DELIMITER}" >> "${GITHUB_OUTPUT}"
-          echo "$_links" >> "${GITHUB_OUTPUT}"
-          echo "${DELIMITER}" >> "${GITHUB_OUTPUT}"
-
-      - uses: softprops/action-gh-release@v0.1.15
-        with:
-          body: |
-            ${{ steps.changelog_reader.outputs.changes }}
-            ${{ steps.changelog.outputs.links }}
-
-  build:
-    name: Build
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Setup Node
+
+      - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: lts/iron
+
       - name: Setup PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
-      - name: Get PNPM store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      - name: Setup PNPM cache
-        uses: actions/cache@v4
+          run_install: true
+
+      - name: Create Release Pull Request or Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Install dependencies
-        run: pnpm install
-      - name: Run tests
-        run: pnpm test
-
-  publish-npm:
-    needs: release
-
-    name: Publish NPM Package
-
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          registry-url: "https://registry.npmjs.org"
-          always-auth: true
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Get PNPM store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      - name: Setup PNPM cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Install dependencies
-        run: pnpm install
-      - name: Publish package
-        run: npm publish
+          publish: pnpm release
+          commit: "chore: version packages"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

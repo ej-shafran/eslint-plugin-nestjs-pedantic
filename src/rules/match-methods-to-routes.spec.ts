@@ -1,7 +1,5 @@
-"use strict";
-
-const rule = require("../lib/rules/match-methods-to-routes");
-const { RuleTester } = require("@typescript-eslint/rule-tester");
+import rule from "./match-methods-to-routes.js";
+import { RuleTester } from "@typescript-eslint/rule-tester";
 
 const ruleTester = new RuleTester();
 

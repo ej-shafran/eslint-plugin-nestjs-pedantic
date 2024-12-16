@@ -5,39 +5,34 @@ Nitpicky ESLint rules.
 ## Installation
 
 ```
-npm install -D eslint eslint-plugin-nestjs-pedantic
+npm install -D eslint typescript-eslint eslint-plugin-nestjs-pedantic
 ```
 
 ## Configuration
 
-### Old (`.eslintrc.*`)
+To use the recommended configuration:
 
 ```js
-module.exports = {
+import nestjsPedantic from "eslint-plugin-nestjs-pedantic";
+
+export default [
   // ...
-  plugins: [
-    // ...
-    "nestjs-pedantic",
-  ],
-  extends: [
-    // ...
-    "nestjs-pedantic/recommended",
-  ],
-};
+  ...nestjsPedantic.configs.recommended,
+];
 ```
 
-### New (`eslint.config.js`)
-
-Either use one of the configs in `eslint-plugin-nestjs-pedantic/lib/configs` or import the plugin as a standalone from `eslint-plugin-nestjs-pedantic`.
+To turn on every rule:
 
 ```js
-const nestjsPedanticRecommended = require("eslint-plugin-nestjs-pedantic/lib/configs/recommended");
+import nestjsPedantic from "eslint-plugin-nestjs-pedantic";
 
-module.exports = {
+export default [
   // ...
-  ...nestjsPedanticRecommended,
-};
+  ...nestjsPedantic.configs.all,
+];
 ```
+
+See more: [Configuring Plugins](https://eslint.org/docs/latest/use/configure/plugins).
 
 ## Rules
 
