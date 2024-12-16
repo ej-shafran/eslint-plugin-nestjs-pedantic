@@ -1,2 +1,2 @@
 printf "\e[33;1;90m>> Linting commit message\n\e[0m"
-npx --no -- commitlint --edit ${1}
+pnpm exec commitlint --edit ${1}

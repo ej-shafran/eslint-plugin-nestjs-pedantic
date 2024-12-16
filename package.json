@@ -14,8 +14,11 @@
     "test": "vitest run",
     "test:watch": "vitest dev",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "build": "tsc",
+    "release": "npm run build && changeset publish",
     "build:docs": "eslint-doc-generator --url-rule-doc 'https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/{name}'",
     "prepare": "husky"
   },
@@ -41,6 +44,7 @@
   },
   "homepage": "https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic#readme",
   "devDependencies": {
+    "@changesets/cli": "^2.27.10",
     "@commitlint/cli": "^19.1.0",
     "@commitlint/config-conventional": "^19.0.3",
     "@commitlint/types": "^19.0.3",
