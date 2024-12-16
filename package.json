@@ -18,7 +18,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "check-types": "tsc --noEmit",
     "release": "npm run build && changeset publish",
     "build:docs": "eslint-doc-generator --url-rule-doc 'https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/{name}'",
