@@ -3,8 +3,9 @@
   "name": "eslint-plugin-nestjs-pedantic",
   "version": "0.0.6",
   "description": "An ESLint plugin for NestJS, with pedantic rules",
-  "main": "dist/index.js",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "LICENSE",
