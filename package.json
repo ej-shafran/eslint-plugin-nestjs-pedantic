@@ -17,7 +17,8 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "build:docs": "eslint-doc-generator --url-rule-doc 'https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/{name}'"
+    "build:docs": "eslint-doc-generator --url-rule-doc 'https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/{name}'",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -57,5 +58,6 @@
     "mocha": "^11.0.1",
     "nyc": "^17.0.0",
     "prettier": "^3.0.3"
-  }
+  },
+  "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28"
 }
