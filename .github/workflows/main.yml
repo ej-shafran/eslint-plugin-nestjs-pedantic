@@ -42,6 +42,10 @@ jobs:
         run: |
           pnpm commitlint --verbose --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }}
 
+      - name: Check types
+        run: |
+          pnpm check-types
+
       - name: Lint code
         run: |
           pnpm lint
