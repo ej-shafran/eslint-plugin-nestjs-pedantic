@@ -1,6 +1,4 @@
-"use strict";
-
-import rule from "../lib/rules/no-unused-route-params.js";
+import rule from "./no-unused-route-params.js";
 import { RuleTester } from "@typescript-eslint/rule-tester";
 
 const ruleTester = new RuleTester();

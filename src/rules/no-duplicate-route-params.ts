@@ -11,6 +11,7 @@ export default createRule({
   meta: {
     docs: {
       description: "Disallow duplicate route parameters",
+      recommended: true,
     },
     type: "problem",
     schema: [],
@@ -34,8 +35,7 @@ export default createRule({
           .filter((slug) => slug.startsWith(":"))
           .map((slug) => slug.slice(1));
 
-        /** @type {string[]} */
-        const acc = [];
+        const acc: string[] = [];
         routeParams.forEach((param) => {
           if (acc.includes(param)) {
             context.report({

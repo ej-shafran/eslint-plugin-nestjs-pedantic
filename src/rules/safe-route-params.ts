@@ -3,11 +3,11 @@ import findParamDecorators from "../utils/findParamDecorators.js";
 import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
 import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 
-const messages = /** @type {const}*/ ({
+const messages = {
   invalidParamName: "Invalid param name for route `{{definition}}`",
   missingRouteDefinition: "Invalid call to `@Param` without a route definition",
   replaceWithOtherParam: 'Replace with `"{{otherParam}}"`',
-});
+} as const;
 
 export default createRule({
   name: "safe-route-params",

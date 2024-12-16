@@ -1,6 +1,4 @@
-"use strict";
-
-import rule from "../lib/rules/match-methods-to-routes.js";
+import rule from "./match-methods-to-routes.js";
 import { RuleTester } from "@typescript-eslint/rule-tester";
 
 const ruleTester = new RuleTester();

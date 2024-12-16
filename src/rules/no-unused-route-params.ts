@@ -14,6 +14,7 @@ export default createRule({
     hasSuggestions: true,
     docs: {
       description: "Disallow unused route parameters",
+      recommended: true,
     },
     type: "problem",
     schema: [],
@@ -51,7 +52,8 @@ export default createRule({
           if (
             paramDecorators.some((decorator) => {
               const firstArg = decorator.expression.arguments[0];
-              if (firstArg.type !== AST_NODE_TYPES.Literal) return false;
+              if (!firstArg || firstArg.type !== AST_NODE_TYPES.Literal)
+                return false;
               return firstArg.value === param;
             })
           )

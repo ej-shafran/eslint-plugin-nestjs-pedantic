@@ -3,18 +3,16 @@
   "name": "eslint-plugin-nestjs-pedantic",
   "version": "0.0.4",
   "description": "An ESLint plugin for NestJS, with pedantic rules",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "files": [
-    "index.js",
-    "lib",
+    "dist",
     "LICENSE",
     "CHANGELOG.md"
   ],
   "scripts": {
-    "test": "mocha",
-    "test:watch": "mocha --watch",
-    "test:coverage": "nyc mocha",
+    "test": "vitest run",
+    "test:watch": "vitest dev",
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -55,10 +53,9 @@
     "eslint-plugin-n": "^17.0.0",
     "globals": "^15.13.0",
     "husky": "^9.0.10",
-    "mocha": "^11.0.1",
-    "nyc": "^17.0.0",
     "prettier": "^3.0.3",
-    "typescript-eslint": "^8.18.1"
+    "typescript-eslint": "^8.18.1",
+    "vitest": "^2.1.8"
   },
   "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "dependencies": {

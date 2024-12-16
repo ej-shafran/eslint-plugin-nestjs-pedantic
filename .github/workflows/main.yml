@@ -39,7 +39,7 @@ jobs:
       - name: "Run lint"
         run: "pnpm lint"
       - name: "Run tests"
-        run: "pnpm test:coverage"
+        run: "pnpm test"
 
   docs-and-format:
     name: "Docs & Format"

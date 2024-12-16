@@ -1,31 +1,27 @@
+import { RuleContext, RuleFixer } from "@typescript-eslint/utils/ts-eslint";
 import createRule from "../utils/createRule.js";
 import findControllerDecorator from "../utils/findControllerDecorator.js";
 import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
+import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 
-const messages = /** @type {const}*/ ({
+const messages = {
   noTrailingSlashes: "Route definition `{{definition}}` has trailing slashes",
   removeSlashes: "Remove trailing slashes",
-});
+} as const;
 
 const SLASHES_REGEX = /^\/|\/$/g;
 
-/**
- * @param {NonNullable<ReturnType<typeof findHttpMethodDecorator>>} decorator
- * @param {import("@typescript-eslint/utils").TSESLint.RuleContext<keyof messages, []>} context
- **/
-function checkDecorator(decorator, context) {
-  const firstArg =
-    /** @type {import("@typescript-eslint/utils").TSESTree.Literal | undefined} */
-    (decorator.expression.arguments[0]);
-  if (!firstArg) return;
+function checkDecorator(
+  decorator: NonNullable<ReturnType<typeof findHttpMethodDecorator>>,
+  context: Readonly<RuleContext<keyof typeof messages, never[]>>,
+) {
+  const firstArg = decorator.expression.arguments[0];
+  if (!firstArg || firstArg.type !== AST_NODE_TYPES.Literal) return;
 
   const route = firstArg.value;
   if (typeof route !== "string") return;
 
-  /**
-   * @param {import("@typescript-eslint/utils").TSESLint.RuleFixer} fixer
-   **/
-  function fix(fixer) {
+  function fix(fixer: RuleFixer) {
     if (!firstArg || typeof route !== "string") return [];
 
     return fixer.replaceText(

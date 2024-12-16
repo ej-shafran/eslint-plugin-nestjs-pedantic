@@ -1,6 +1,4 @@
-"use strict";
-
-import rule from "../lib/rules/no-duplicate-route-params.js";
+import rule from ".//no-duplicate-route-params.js";
 import { RuleTester } from "@typescript-eslint/rule-tester";
 
 const ruleTester = new RuleTester();

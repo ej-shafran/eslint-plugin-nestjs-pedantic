@@ -1,6 +1,4 @@
-"use strict";
-
-import rule from "../lib/rules/route-convention.js";
+import rule from "./route-convention.js";
 import { RuleTester } from "@typescript-eslint/rule-tester";
 
 const ruleTester = new RuleTester();
