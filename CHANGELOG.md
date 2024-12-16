@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.9
+
+### Patch Changes
+
+- c253b0f: Fix regression with "no such file or directory".
+
 ## 0.0.8
 
 ### Patch Changes
