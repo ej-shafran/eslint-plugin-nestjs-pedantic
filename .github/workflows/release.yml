@@ -1,9 +1,15 @@
-name: GitHub Release + Publish Packages
+name: Release
 
 on:
   push:
     tags:
       - "v*.*.*"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
