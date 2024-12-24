@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          ref: ${{ github.head_ref }}
       - name: Configure Git
         run: |
           git config --global user.email ejshafran@hilma.tech
