@@ -7,6 +7,8 @@ import { AST_NODE_TYPES } from "@typescript-eslint/utils";
 const messages = {
   noTrailingSlashes: "Route definition `{{definition}}` has trailing slashes",
   removeSlashes: "Remove trailing slashes",
+  noEmptyRouteString: "Route definition `{{definition}}` is an empty string",
+  removeEmptyRouteString: "Remove empty route string",
 } as const;
 
 const SLASHES_REGEX = /^\/|\/$/g;
@@ -21,7 +23,7 @@ function checkDecorator(
   const route = firstArg.value;
   if (typeof route !== "string") return;
 
-  function fix(fixer: RuleFixer) {
+  function slashesFix(fixer: RuleFixer) {
     if (!firstArg || typeof route !== "string") return [];
 
     return fixer.replaceText(
@@ -37,13 +39,29 @@ function checkDecorator(
       data: {
         definition: context.sourceCode.getText(decorator),
       },
-      fix,
+      fix: slashesFix,
       suggest: [
         {
           messageId: "removeSlashes",
-          fix,
+          fix: slashesFix,
         },
       ],
+    });
+  }
+
+  function emptyStringFix(fixer: RuleFixer) {
+    return fixer.remove(firstArg);
+  }
+
+  if (route === "") {
+    context.report({
+      node: firstArg,
+      messageId: "noEmptyRouteString",
+      data: {
+        definition: context.sourceCode.getText(decorator),
+      },
+      fix: emptyStringFix,
+      suggest: [{ messageId: "removeEmptyRouteString", fix: emptyStringFix }],
     });
   }
 }
