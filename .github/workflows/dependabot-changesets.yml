@@ -11,12 +11,12 @@ jobs:
     if: github.actor == 'dependabot[bot]' && github.repository == 'ej-shafran/eslint-plugin-nestjs-pedantic'
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@2
+        uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
 
       - name: Checkout
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Configure Git
@@ -24,7 +24,7 @@ jobs:
           git config --global user.email ejshafran@hilma.tech
           git config --global user.name ej-shafran
       - name: Generate changeset
-        uses: actions/github-script@7
+        uses: actions/github-script@v7
         with:
           script: |
             const { promises: fs } = require("fs");
