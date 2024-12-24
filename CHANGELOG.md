@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.10
+
+### Patch Changes
+
+- 789541f: Make empty strings invalid for route convention.
+
 ## 0.0.9
 
 ### Patch Changes
