@@ -33,12 +33,12 @@ jobs:
           pnpm format:check
 
       - name: Validate Last Commit Message
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && (github.actor != 'dependabot[bot]') && (contains(github.head_ref, 'dependabot/github_actions/') == false)
         run: |
           pnpm commitlint --verbose --last
 
       - name: Validate All Commit Messages
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && (github.actor != 'dependabot[bot]') && (contains(github.head_ref, 'dependabot/github_actions/') == false)
         run: |
           pnpm commitlint --verbose --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }}
 
