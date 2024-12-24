@@ -21,6 +21,9 @@ class UserController {
 
   @Patch("/both-sides/")
   patchBothSides() {}
+
+  @Get("")
+  get() {}
 }
 ```
 
@@ -37,5 +40,8 @@ class UserController {
 
   @Patch("both-sides")
   patchBothSides() {}
+
+  @Get()
+  get() {}
 }
 ```
