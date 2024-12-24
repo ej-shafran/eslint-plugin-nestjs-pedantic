@@ -55,6 +55,7 @@ jobs:
             async function getBumps(files) {
               const bumps = new Map();
               for (const file of files) {
+                const jsonFile = JSON.parse(await fs.readFile(file, "utf-8"));
                 const { stdout: changes } = await exec.getExecOutput("git", [
                   "show",
                   file,
@@ -64,7 +65,10 @@ jobs:
                     continue;
                   }
                   const match = change.match(/"(.*?)"/g);
-                  bumps.set(match[0].replace(/"/g, ""), match[1].replace(/"/g, ""));
+                  const pkg = match[0].replace(/"/g, "");
+                  if (!jsonFile.dependencies[pkg]) continue;
+                  const bump = match[1].replace(/"/g, "");
+                  bumps.set(pkg, bump);
                 }
               }
               return bumps;
@@ -85,10 +89,7 @@ jobs:
               .filter((file) => file !== "package.json") // skip root package.json
               .filter((file) => file.includes("package.json"));
             const packageNames = await getPackagesNames(files);
-            if (!packageNames.length) {
-              console.log("No package.json changes to published packages, skipping");
-              return;
-            }
+
             const { stdout: shortHash } = await exec.getExecOutput(
               "git rev-parse --short HEAD"
             );
