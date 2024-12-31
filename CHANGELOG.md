@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.11
+
+### Patch Changes
+
+- 70527be: Bump `@typescript-eslint/utils`.
+
 ## 0.0.10
 
 ### Patch Changes
