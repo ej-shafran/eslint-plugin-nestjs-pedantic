@@ -55,6 +55,6 @@ jobs:
           pnpm test
 
       - name: Check changeset
-        if: github.event_name != 'pull_request' || github.head_ref != 'changeset-release/main'
+        if: github.event_name != 'pull_request' || (github.actor != 'dependabot[bot]' && !startsWith(github.head_ref, 'dependabot/'))
         run: |
           pnpm changeset status --since=origin/main
