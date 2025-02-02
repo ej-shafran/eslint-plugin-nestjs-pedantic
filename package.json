@@ -52,7 +52,7 @@
     "@commitlint/types": "^19.0.3",
     "@eslint/js": "^9.17.0",
     "@types/node": "^22.0.0",
-    "@typescript-eslint/rule-tester": "^8.20.0",
+    "@typescript-eslint/rule-tester": "^8.22.0",
     "eslint": "^9.17.0",
     "eslint-doc-generator": "^2.0.0",
     "eslint-plugin-eslint-plugin": "^6.0.0",
@@ -61,7 +61,7 @@
     "husky": "^9.0.10",
     "prettier": "^3.0.3",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.20.0",
+    "typescript-eslint": "^8.22.0",
     "vitest": "^3.0.2"
   },
   "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
