@@ -40,10 +40,12 @@ export default createRule({
           .map((slug) => slug.slice(1));
 
         const paramDecorators = findParamDecorators(node);
-        // Ignore routes that use `@Param() params: Record<string, string>`
+        // Ignore routes that call `@Param()` without passing a specific param
         if (
           paramDecorators.some(
-            (decorator) => decorator.expression.arguments.length === 0,
+            (decorator) =>
+              decorator.expression.arguments[0]?.type !==
+              AST_NODE_TYPES.Literal,
           )
         )
           return;

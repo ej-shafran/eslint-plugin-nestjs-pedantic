@@ -37,6 +37,16 @@ ruleTester.run("no-unused-route-params", rule, {
         "}",
       ].join("\n"),
     },
+    {
+      name: "should ignore a call to `Param` with pipeline arguments",
+      code: [
+        "@Controller('user')",
+        "export class UserController {",
+        "  @Get('children/:id')",
+        "  getChildrenById(@Param(new ValidationPipe()) params: object) {}",
+        "}",
+      ].join("\n"),
+    },
   ],
 
   invalid: [
