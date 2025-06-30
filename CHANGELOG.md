@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.14
+
+### Patch Changes
+
+- 54da0db: Fix `no-unused-route-params` for `@Param` calls with a non-string parameter
+
 ## 0.0.13
 
 ### Patch Changes
