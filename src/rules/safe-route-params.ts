@@ -48,7 +48,7 @@ export default createRule({
           const route = String(routeFirstArg?.value ?? "");
 
           const segments = route.split("/");
-          if (!segments.filter(Boolean).includes(`:${paramName}`)) {
+          if (!segments.includes(`:${paramName}`)) {
             const routeParams = segments
               .filter((slug) => slug && slug.startsWith(":"))
               .map((param) => param.slice(1));
