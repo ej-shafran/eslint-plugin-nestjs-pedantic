@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.12
+
+### Patch Changes
+
+- a2cc0fa: Fix types for index export, allowing users to import plugin in typed ESLint configs without errors.
+- 2c5fbae: Bump `@typescript-eslint/utils`.
+
 ## 0.0.11
 
 ### Patch Changes
