@@ -19,7 +19,7 @@ const rules = {
   "no-duplicate-route-params": noDuplicateRouteParams,
 };
 
-const plugin: TSESLint.FlatConfig.Plugin = {
+const plugin = {
   meta: {
     name: pkg.name,
     version: pkg.version,
@@ -34,7 +34,7 @@ const plugin: TSESLint.FlatConfig.Plugin = {
   },
   rules,
   processors: {},
-};
+} satisfies TSESLint.FlatConfig.Plugin;
 
 const recommended: TSESLint.FlatConfig.Config = {
   plugins: {
