@@ -89,5 +89,34 @@ ruleTester.run("safe-route-params", rule, {
         },
       ],
     },
+    {
+      name: "should point out invalid `Param` calls (including prefixes)",
+      code: [
+        "@Controller('user')",
+        "export class UserController {",
+        "  @Get(':validParam')",
+        '  getByValidParam(@Param("validPar") validParam: string) {}',
+        "}",
+      ].join("\n"),
+      errors: [
+        {
+          messageId: "invalidParamName",
+          data: { definition: "@Get(':validParam')" },
+          suggestions: [
+            {
+              messageId: "replaceWithOtherParam",
+              data: { otherParam: "validParam" },
+              output: [
+                "@Controller('user')",
+                "export class UserController {",
+                "  @Get(':validParam')",
+                '  getByValidParam(@Param("validParam") validParam: string) {}',
+                "}",
+              ].join("\n"),
+            },
+          ],
+        },
+      ],
+    },
   ],
 });
