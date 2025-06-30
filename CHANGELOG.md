@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.13
+
+### Patch Changes
+
+- e091445: Fix `safe-route-params` false negatives for `@Param` calls with a prefix of an existing route parameter.
+
 ## 0.0.12
 
 ### Patch Changes
