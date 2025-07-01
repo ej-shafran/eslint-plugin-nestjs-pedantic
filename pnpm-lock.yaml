@@ -40,8 +40,8 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2(eslint@9.26.0(jiti@2.4.2))(typescript@5.7.3)
       eslint-plugin-eslint-plugin:
-        specifier: ^6.0.0
-        version: 6.4.0(eslint@9.26.0(jiti@2.4.2))
+        specifier: ^6.5.0
+        version: 6.5.0(eslint@9.26.0(jiti@2.4.2))
       eslint-plugin-n:
         specifier: ^17.0.0
         version: 17.15.1(eslint@9.26.0(jiti@2.4.2))
@@ -1035,8 +1035,8 @@ packages:
     peerDependencies:
       eslint: '>=8'
 
-  eslint-plugin-eslint-plugin@6.4.0:
-    resolution: {integrity: sha512-X94/hr7DnckX68wE6Qqeo3DsZndZSclfoewjwD249yG5z2EAOl3UGUohLIgOpmbUjcFv6AlfW3wxBnOiWkS1Iw==}
+  eslint-plugin-eslint-plugin@6.5.0:
+    resolution: {integrity: sha512-DT8YpcXDtMBcBZN39JlkHGurHKU8eYFLavTrnowQLeNwqe/diRUsllsftgD/7dZ2/ItabNLLF2/EYapE1H+G7Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -2743,7 +2743,7 @@ snapshots:
   '@typescript-eslint/visitor-keys@8.32.1':
     dependencies:
       '@typescript-eslint/types': 8.32.1
-      eslint-visitor-keys: 4.2.0
+      eslint-visitor-keys: 4.2.1
 
   '@typescript-eslint/visitor-keys@8.35.1':
     dependencies:
@@ -3138,7 +3138,7 @@ snapshots:
       eslint: 9.26.0(jiti@2.4.2)
       eslint-compat-utils: 0.5.1(eslint@9.26.0(jiti@2.4.2))
 
-  eslint-plugin-eslint-plugin@6.4.0(eslint@9.26.0(jiti@2.4.2)):
+  eslint-plugin-eslint-plugin@6.5.0(eslint@9.26.0(jiti@2.4.2)):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.26.0(jiti@2.4.2))
       eslint: 9.26.0(jiti@2.4.2)
