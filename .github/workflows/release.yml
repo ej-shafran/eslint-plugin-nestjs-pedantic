@@ -31,9 +31,6 @@ jobs:
       - name: Update NPM
         run: npm i -g npm@latest
 
-      - name: Empty .npmrc File
-        run: touch "$HOME/.npmrc"
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
@@ -43,7 +40,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
+          publish: 'rm $HOME/.npmrc && pnpm release'
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
