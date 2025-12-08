@@ -31,6 +31,9 @@ jobs:
       - name: Update NPM
         run: npm i -g npm@latest
 
+      - name: Empty .npmrc File
+        run: touch "$HOME/.npmrc"
+
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
