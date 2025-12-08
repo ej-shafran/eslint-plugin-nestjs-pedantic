@@ -6,6 +6,15 @@
 
 <!-- end auto-generated rule header -->
 
+## Explanation
+
+From [the NestJS docs](https://docs.nestjs.com/recipes/swc#common-pitfalls):
+
+> SWC doesn't handle **circular imports** well \[...\]
+> For all **circular dependency injections** in your project, you will also need to use \[a\] custom wrapper type \[...\]
+
+This rule ensures that you use some sort of wrapper type on anything decorated with `@Inject(forwardRef(...))`. It suggests that you fix the issue by using a wrapper called `Circular` which needs to be defined globally, either by this package or by you (see [below](#additional-setup)).
+
 ## Rule Details
 
 ❌ **Incorrect** code:
