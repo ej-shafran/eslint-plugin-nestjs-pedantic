@@ -1,0 +1,15 @@
+diff --git a/dist/changesets-cli.cjs.js b/dist/changesets-cli.cjs.js
+index 14e80c2647a85de7cd7280e16cc2590cf9a0eab0..348b8dbbb8b2f3c95a8eaf3785ea87b6ffc048c2 100644
+--- a/dist/changesets-cli.cjs.js
++++ b/dist/changesets-cli.cjs.js
+@@ -818,7 +818,9 @@ async function internalPublish(pkgName, opts, twoFactorState) {
+ 
+ 
+   const envOverride = {
+-    npm_config_registry: getCorrectRegistry()
++    npm_config_registry: getCorrectRegistry(),
++    // Don't pass through any npm auth tokens so that we use trusted publishers
++    NODE_AUTH_TOKEN: "",
+   };
+   let {
+     code,
