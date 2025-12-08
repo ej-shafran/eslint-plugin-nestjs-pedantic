@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.15
+
+### Patch Changes
+
+- ad4eebd: Add `wrap-circular-dependencies` rule and `recommendedSwc` config.
+
 ## 0.0.14
 
 ### Patch Changes
