@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: lts/iron
           registry-url: "https://registry.npmjs.org"
+          provenance: true
 
       - name: Update NPM
         run: npm i -g npm@latest
@@ -44,4 +45,3 @@ jobs:
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ''
