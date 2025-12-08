@@ -52,7 +52,7 @@
     "@commitlint/types": "^19.0.3",
     "@eslint/js": "^9.30.0",
     "@types/node": "^22.0.0",
-    "@typescript-eslint/rule-tester": "^8.46.2",
+    "@typescript-eslint/rule-tester": "^8.48.1",
     "eslint": "^9.17.0",
     "eslint-doc-generator": "^2.2.2",
     "eslint-plugin-eslint-plugin": "^6.5.0",
@@ -66,6 +66,6 @@
   },
   "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "dependencies": {
-    "@typescript-eslint/utils": "^8.19.1"
+    "@typescript-eslint/utils": "^8.48.1"
   }
 }
