@@ -6,9 +6,6 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "publishConfig": {
-    "provenance": true
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -88,10 +85,5 @@
         "⚡"
       ]
     ]
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@changesets/cli": "patches/@changesets__cli.patch"
-    }
   }
 }

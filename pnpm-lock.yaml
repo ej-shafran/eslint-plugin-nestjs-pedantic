@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@changesets/cli':
-    hash: 7c2dq4vqhwbqqqgo5zvm4aev4u
-    path: patches/@changesets__cli.patch
-
 importers:
 
   .:
@@ -19,7 +14,7 @@ importers:
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.10
-        version: 2.28.1(patch_hash=7c2dq4vqhwbqqqgo5zvm4aev4u)
+        version: 2.28.1
       '@commitlint/cli':
         specifier: ^20.2.0
         version: 20.2.0(@types/node@22.13.9)(typescript@5.8.3)
@@ -2179,7 +2174,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.28.1(patch_hash=7c2dq4vqhwbqqqgo5zvm4aev4u)':
+  '@changesets/cli@2.28.1':
     dependencies:
       '@changesets/apply-release-plan': 7.0.10
       '@changesets/assemble-release-plan': 6.0.6
