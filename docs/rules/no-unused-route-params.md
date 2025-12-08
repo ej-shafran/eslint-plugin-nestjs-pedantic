@@ -1,6 +1,6 @@
 # Disallow unused route parameters (`nestjs-pedantic/no-unused-route-params`)
 
-💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`.
+💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`, ⚡ `recommendedSwc`.
 
 💡 This rule is manually fixable by [editor suggestions](https://eslint.org/docs/latest/use/core-concepts#rule-suggestions).
 

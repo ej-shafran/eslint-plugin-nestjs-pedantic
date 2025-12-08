@@ -1,6 +1,6 @@
 # Disallow duplicate route parameters (`nestjs-pedantic/no-duplicate-route-params`)
 
-💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`.
+💼 This rule is enabled in the following configs: 🌐 `all`, ✅ `recommended`, ⚡ `recommendedSwc`.
 
 <!-- end auto-generated rule header -->
 
