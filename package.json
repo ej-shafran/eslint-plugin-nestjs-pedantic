@@ -30,7 +30,7 @@
     "lint:fix": "eslint --fix .",
     "build": "tsc -p tsconfig.build.json",
     "check-types": "tsc --noEmit",
-    "release": "rm $HOME/.npmrc && npm run build && changeset publish",
+    "release": "npm run build && changeset publish",
     "build:docs": "eslint-doc-generator --url-rule-doc 'https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/{name}'",
     "prepare": "husky"
   },
