@@ -38,9 +38,10 @@ jobs:
 
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
-        uses: ryanbas21/action@5525a5cc0b094ee6a76ae43dee1ba06f2a04d3b2 # Workaround for now...
+        uses: changesets/action@v1
         with:
           publish: pnpm release
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ''
