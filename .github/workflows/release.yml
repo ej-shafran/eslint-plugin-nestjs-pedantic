@@ -28,13 +28,13 @@ jobs:
           node-version: lts/iron
           registry-url: "https://registry.npmjs.org"
 
-      - name: Update NPM
-        run: npm i -g npm@latest
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
           run_install: true
+
+      - name: Update NPM
+        run: npm i -g npm@latest
 
       - name: Create Release Pull Request or Publish to NPM
         id: changesets
