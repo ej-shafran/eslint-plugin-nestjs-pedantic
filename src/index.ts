@@ -6,6 +6,7 @@ import routeConvention from "./rules/route-convention.js";
 import safeRouteParams from "./rules/safe-route-params.js";
 import noUnusedRouteParams from "./rules/no-unused-route-params.js";
 import noDuplicateRouteParams from "./rules/no-duplicate-route-params.js";
+import wrapCircularDependencies from "./rules/wrap-circular-dependencies.js";
 
 const pkg = JSON.parse(
   fs.readFileSync(new URL("../package.json", import.meta.url), "utf8"),
@@ -17,6 +18,7 @@ const rules = {
   "safe-route-params": safeRouteParams,
   "no-unused-route-params": noUnusedRouteParams,
   "no-duplicate-route-params": noDuplicateRouteParams,
+  "wrap-circular-dependencies": wrapCircularDependencies,
 };
 
 const plugin = {
@@ -27,6 +29,9 @@ const plugin = {
   configs: {
     get recommended() {
       return recommended;
+    },
+    get recommendedSwc() {
+      return recommendedSwc;
     },
     get all() {
       return all;
@@ -46,6 +51,14 @@ const recommended: TSESLint.FlatConfig.Config = {
     "nestjs-pedantic/safe-route-params": "error",
     "nestjs-pedantic/no-unused-route-params": "error",
     "nestjs-pedantic/no-duplicate-route-params": "error",
+  },
+};
+
+const recommendedSwc: TSESLint.FlatConfig.Config = {
+  ...recommended,
+  rules: {
+    ...recommended.rules,
+    "nestjs-pedantic/wrap-circular-dependencies": "error",
   },
 };
 
