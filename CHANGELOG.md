@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.16
+
+### Patch Changes
+
+- 1203e6f: Fix TypeScript issue when using `defineConfig` from ESLint.
+- 38032a4: Use correct `type` fields for rules, so that their severity is clearer:
+  - `no-unused-route-params` is now a `suggestion`
+  - `safe-route-params` is now a `problem`
+  - `wrap-circular-dependencies` is now a `problem`
+
+- 22adff0: Added the `no-mismatchd-forward-refs` rule, which is included in the `recommended` configuration.
+
 ## 0.0.15
 
 ### Patch Changes
