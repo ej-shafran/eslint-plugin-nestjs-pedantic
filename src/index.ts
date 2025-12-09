@@ -8,6 +8,7 @@ import noUnusedRouteParams from "./rules/no-unused-route-params.js";
 import noDuplicateRouteParams from "./rules/no-duplicate-route-params.js";
 import wrapCircularDependencies from "./rules/wrap-circular-dependencies.js";
 import noMismatchedForwardRefs from "./rules/no-mismatched-forward-refs.js";
+import { ESLint, Linter, Rule } from "eslint";
 
 const pkg = JSON.parse(
   fs.readFileSync(new URL("../package.json", import.meta.url), "utf8"),
@@ -21,7 +22,7 @@ const rules = {
   "no-duplicate-route-params": noDuplicateRouteParams,
   "no-mismatched-forward-refs": noMismatchedForwardRefs,
   "wrap-circular-dependencies": wrapCircularDependencies,
-};
+} as unknown as Record<string, Rule.RuleModule>;
 
 const plugin = {
   meta: {
@@ -41,9 +42,9 @@ const plugin = {
   },
   rules,
   processors: {},
-} satisfies TSESLint.FlatConfig.Plugin;
+} satisfies ESLint.Plugin;
 
-const recommended: TSESLint.FlatConfig.Config = {
+const recommended: Linter.Config = {
   plugins: {
     "nestjs-pedantic": plugin,
   },
@@ -57,7 +58,7 @@ const recommended: TSESLint.FlatConfig.Config = {
   },
 };
 
-const recommendedSwc: TSESLint.FlatConfig.Config = {
+const recommendedSwc: Linter.Config = {
   ...recommended,
   rules: {
     ...recommended.rules,
@@ -65,7 +66,7 @@ const recommendedSwc: TSESLint.FlatConfig.Config = {
   },
 };
 
-const all: TSESLint.FlatConfig.Config = {
+const all: Linter.Config = {
   plugins: {
     "nestjs-pedantic": plugin,
   },
