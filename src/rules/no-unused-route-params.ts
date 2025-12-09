@@ -16,7 +16,7 @@ export default createRule({
       description: "Disallow unused route parameters",
       recommended: true,
     },
-    type: "problem",
+    type: "suggestion",
     schema: [],
     messages,
   },

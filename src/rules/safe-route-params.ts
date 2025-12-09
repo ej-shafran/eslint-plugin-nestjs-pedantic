@@ -16,7 +16,7 @@ export default createRule({
     docs: {
       description: "Ensure safe usage of the `@Param` decorator",
     },
-    type: "suggestion",
+    type: "problem",
     schema: [],
     messages,
   },
