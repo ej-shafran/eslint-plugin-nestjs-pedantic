@@ -1,6 +1,7 @@
 import { RuleFixer } from "@typescript-eslint/utils/ts-eslint";
 import createRule from "../utils/createRule.js";
 import { AST_NODE_TYPES } from "@typescript-eslint/utils";
+import getForwardRefIdentifier from "../utils/getForwardRefIdentifier.js";
 
 const messages = {
   unwrappedCircularDependency:
@@ -24,30 +25,9 @@ export default createRule({
   create(context) {
     return {
       Decorator(node) {
+        if (!getForwardRefIdentifier(node)) return;
+
         let { parent } = node;
-        const { expression } = node;
-
-        if (expression.type !== AST_NODE_TYPES.CallExpression) return;
-
-        if (
-          expression.callee.type !== AST_NODE_TYPES.Identifier ||
-          expression.callee.name !== "Inject"
-        )
-          return;
-
-        const firstArgument = expression.arguments[0];
-        if (
-          !firstArgument ||
-          firstArgument.type !== AST_NODE_TYPES.CallExpression
-        )
-          return;
-
-        if (
-          firstArgument.callee.type !== AST_NODE_TYPES.Identifier ||
-          firstArgument.callee.name !== "forwardRef"
-        )
-          return;
-
         if (parent.type === AST_NODE_TYPES.TSParameterProperty) {
           parent = parent.parameter;
         }
