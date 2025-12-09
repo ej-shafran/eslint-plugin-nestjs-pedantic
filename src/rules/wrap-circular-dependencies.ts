@@ -18,7 +18,7 @@ export default createRule({
       description:
         "Wrap circular dependencies to prevent SWC compilation issues",
     },
-    type: "suggestion",
+    type: "problem",
     schema: [],
     messages,
   },
