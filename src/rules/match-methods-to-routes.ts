@@ -1,6 +1,6 @@
 import createRule from "../utils/createRule.js";
 import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
-import { AST_NODE_TYPES } from "@typescript-eslint/utils";
+import { AST_NODE_TYPES, TSESTree } from "@typescript-eslint/utils";
 
 const LETTER_REGEX = /^[A-Za-z]$/;
 
@@ -38,6 +38,7 @@ function getMethodName(httpMethod: string, route: string) {
 const messages = {
   matchMethodsToRoutes:
     "This method should be `{{expected}}` to match `{{definition}}`",
+  renameMethod: "Rename to `{{expected}}`",
 } as const;
 
 export default createRule({
@@ -51,6 +52,7 @@ export default createRule({
     schema: [],
     messages,
     fixable: "code",
+    hasSuggestions: true,
   },
   create(context) {
     return {
@@ -58,25 +60,44 @@ export default createRule({
         const decorator = findHttpMethodDecorator(node);
         if (!decorator) return;
 
-        const recieved = node.key
+        const received = node.key
           ? node.key.type === AST_NODE_TYPES.Identifier
             ? node.key.name
             : null
           : "";
-        if (recieved === null) return;
+        if (received === null) return;
 
         const httpMethod = decorator.expression.callee.name;
 
         const firstArg = decorator.expression.arguments[0];
-        // TODO: handle array argument to `@Get()`, etc.
-        if (firstArg && firstArg.type !== AST_NODE_TYPES.Literal) return;
 
-        const route = firstArg?.value ?? "";
-        if (typeof route !== "string") return;
+        let route: string;
+
+        if (!firstArg) {
+          route = "";
+        } else if (
+          firstArg.type === AST_NODE_TYPES.Literal &&
+          typeof firstArg.value === "string"
+        ) {
+          route = firstArg.value;
+        } else if (firstArg.type === AST_NODE_TYPES.ArrayExpression) {
+          const strings = firstArg.elements.filter(
+            (element): element is TSESTree.Literal =>
+              !!element &&
+              element.type === AST_NODE_TYPES.Literal &&
+              typeof element.value === "string",
+          );
+
+          if (strings.length === 0) return;
+
+          route = strings.map((element) => element.value).join("/");
+        } else {
+          return;
+        }
 
         const expected = getMethodName(httpMethod, route);
 
-        if (recieved !== expected) {
+        if (received !== expected) {
           context.report({
             node: node.key,
             messageId: "matchMethodsToRoutes",
@@ -84,6 +105,18 @@ export default createRule({
               definition: context.sourceCode.getText(decorator),
               expected,
             },
+            fix(fixer) {
+              return fixer.replaceText(node.key, expected);
+            },
+            suggest: [
+              {
+                messageId: "renameMethod",
+                data: { expected },
+                fix(fixer) {
+                  return fixer.replaceText(node.key, expected);
+                },
+              },
+            ],
           });
         }
       },
