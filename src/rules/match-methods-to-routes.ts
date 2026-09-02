@@ -20,19 +20,24 @@ function toPascalCase(s: string) {
   return out;
 }
 
-function getMethodName(httpMethod: string, route: string) {
-  return (
-    httpMethod.toLowerCase() +
-    route
-      .split("/")
-      .filter(Boolean)
-      .map((slug) =>
-        slug.startsWith(":")
-          ? "By" + toPascalCase(slug.slice(1))
-          : toPascalCase(slug),
-      )
-      .join("")
-  );
+function getRouteSegments(route: string) {
+  return route
+    .split("/")
+    .filter(Boolean)
+    .map((slug) =>
+      slug.startsWith(":")
+        ? "By" + toPascalCase(slug.slice(1))
+        : toPascalCase(slug),
+    )
+    .join("");
+}
+
+function getMethodName(httpMethod: string, routes: string | string[]) {
+  const prefix = httpMethod.toLowerCase();
+  if (typeof routes === "string") {
+    return prefix + getRouteSegments(routes);
+  }
+  return prefix + routes.map(getRouteSegments).join("Or");
 }
 
 const messages = {
@@ -71,15 +76,15 @@ export default createRule({
 
         const firstArg = decorator.expression.arguments[0];
 
-        let route: string;
+        let routes: string | string[];
 
         if (!firstArg) {
-          route = "";
+          routes = "";
         } else if (
           firstArg.type === AST_NODE_TYPES.Literal &&
           typeof firstArg.value === "string"
         ) {
-          route = firstArg.value;
+          routes = firstArg.value;
         } else if (firstArg.type === AST_NODE_TYPES.ArrayExpression) {
           const strings = firstArg.elements.filter(
             (element): element is TSESTree.Literal =>
@@ -90,12 +95,12 @@ export default createRule({
 
           if (strings.length === 0) return;
 
-          route = strings.map((element) => element.value).join("/");
+          routes = strings.map((element) => element.value as string);
         } else {
           return;
         }
 
-        const expected = getMethodName(httpMethod, route);
+        const expected = getMethodName(httpMethod, routes);
 
         if (received !== expected) {
           context.report({

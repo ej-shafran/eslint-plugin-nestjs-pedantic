@@ -32,7 +32,7 @@ ruleTester.run("match-methods-to-routes", rule, {
         "@Controller('user')",
         "export class UserController {",
         "  @Get(['users', 'posts'])",
-        "  getUsersPosts() {}",
+        "  getUsersOrPosts() {}",
         "}",
       ].join("\n"),
     },
@@ -201,17 +201,17 @@ ruleTester.run("match-methods-to-routes", rule, {
           messageId: "matchMethodsToRoutes",
           data: {
             definition: "@Get(['users', 'posts'])",
-            expected: "getUsersPosts",
+            expected: "getUsersOrPosts",
           },
           suggestions: [
             {
               messageId: "renameMethod",
-              data: { expected: "getUsersPosts" },
+              data: { expected: "getUsersOrPosts" },
               output: [
                 "@Controller('user')",
                 "export class UserController {",
                 "  @Get(['users', 'posts'])",
-                "  getUsersPosts() {}",
+                "  getUsersOrPosts() {}",
                 "}",
               ].join("\n"),
             },
@@ -222,7 +222,7 @@ ruleTester.run("match-methods-to-routes", rule, {
         "@Controller('user')",
         "export class UserController {",
         "  @Get(['users', 'posts'])",
-        "  getUsersPosts() {}",
+        "  getUsersOrPosts() {}",
         "}",
       ].join("\n"),
     },
@@ -240,17 +240,17 @@ ruleTester.run("match-methods-to-routes", rule, {
           messageId: "matchMethodsToRoutes",
           data: {
             definition: "@Get(['users/:id', 'posts/:id'])",
-            expected: "getUsersByIdPostsById",
+            expected: "getUsersByIdOrPostsById",
           },
           suggestions: [
             {
               messageId: "renameMethod",
-              data: { expected: "getUsersByIdPostsById" },
+              data: { expected: "getUsersByIdOrPostsById" },
               output: [
                 "@Controller('user')",
                 "export class UserController {",
                 "  @Get(['users/:id', 'posts/:id'])",
-                "  getUsersByIdPostsById() {}",
+                "  getUsersByIdOrPostsById() {}",
                 "}",
               ].join("\n"),
             },
@@ -261,7 +261,7 @@ ruleTester.run("match-methods-to-routes", rule, {
         "@Controller('user')",
         "export class UserController {",
         "  @Get(['users/:id', 'posts/:id'])",
-        "  getUsersByIdPostsById() {}",
+        "  getUsersByIdOrPostsById() {}",
         "}",
       ].join("\n"),
     },
