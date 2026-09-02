@@ -66,7 +66,7 @@ export default [
 
 | Name                                                                                                                      | Description                                                                          | 💼       | 🔧  | 💡  |
 | :------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------- | :------- | :-- | :-- |
-| [match-methods-to-routes](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/match-methods-to-routes)       | Match method names to the decorated API routes                                       | 🌐 ✅ ⚡ | 🔧  |     |
+| [match-methods-to-routes](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/match-methods-to-routes)       | Match method names to the decorated API routes                                       | 🌐 ✅ ⚡ | 🔧  | 💡  |
 | [no-duplicate-route-params](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/no-duplicate-route-params)   | Disallow duplicate route parameters                                                  | 🌐 ✅ ⚡ |     |     |
 | [no-mismatched-forward-refs](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/no-mismatched-forward-refs) | Ensure the type of any injected `forwardRef`s matches the actual forwarded reference | 🌐 ✅ ⚡ |     | 💡  |
 | [no-unused-route-params](https://github.com/ej-shafran/eslint-plugin-nestjs-pedantic/wiki/no-unused-route-params)         | Disallow unused route parameters                                                     | 🌐 ✅ ⚡ |     | 💡  |

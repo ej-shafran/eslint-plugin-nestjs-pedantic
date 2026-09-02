@@ -1,6 +1,6 @@
 import createRule from "../utils/createRule.js";
 import findHttpMethodDecorator from "../utils/findHttpMethodDecorator.js";
-import { AST_NODE_TYPES } from "@typescript-eslint/utils";
+import { AST_NODE_TYPES, TSESTree } from "@typescript-eslint/utils";
 
 const LETTER_REGEX = /^[A-Za-z]$/;
 
@@ -20,24 +20,30 @@ function toPascalCase(s: string) {
   return out;
 }
 
-function getMethodName(httpMethod: string, route: string) {
-  return (
-    httpMethod.toLowerCase() +
-    route
-      .split("/")
-      .filter(Boolean)
-      .map((slug) =>
-        slug.startsWith(":")
-          ? "By" + toPascalCase(slug.slice(1))
-          : toPascalCase(slug),
-      )
-      .join("")
-  );
+function getRouteSegments(route: string) {
+  return route
+    .split("/")
+    .filter(Boolean)
+    .map((slug) =>
+      slug.startsWith(":")
+        ? "By" + toPascalCase(slug.slice(1))
+        : toPascalCase(slug),
+    )
+    .join("");
+}
+
+function getMethodName(httpMethod: string, routes: string | string[]) {
+  const prefix = httpMethod.toLowerCase();
+  if (typeof routes === "string") {
+    return prefix + getRouteSegments(routes);
+  }
+  return prefix + routes.map(getRouteSegments).join("Or");
 }
 
 const messages = {
   matchMethodsToRoutes:
     "This method should be `{{expected}}` to match `{{definition}}`",
+  renameMethod: "Rename to `{{expected}}`",
 } as const;
 
 export default createRule({
@@ -51,6 +57,7 @@ export default createRule({
     schema: [],
     messages,
     fixable: "code",
+    hasSuggestions: true,
   },
   create(context) {
     return {
@@ -58,25 +65,44 @@ export default createRule({
         const decorator = findHttpMethodDecorator(node);
         if (!decorator) return;
 
-        const recieved = node.key
+        const received = node.key
           ? node.key.type === AST_NODE_TYPES.Identifier
             ? node.key.name
             : null
           : "";
-        if (recieved === null) return;
+        if (received === null) return;
 
         const httpMethod = decorator.expression.callee.name;
 
         const firstArg = decorator.expression.arguments[0];
-        // TODO: handle array argument to `@Get()`, etc.
-        if (firstArg && firstArg.type !== AST_NODE_TYPES.Literal) return;
 
-        const route = firstArg?.value ?? "";
-        if (typeof route !== "string") return;
+        let routes: string | string[];
 
-        const expected = getMethodName(httpMethod, route);
+        if (!firstArg) {
+          routes = "";
+        } else if (
+          firstArg.type === AST_NODE_TYPES.Literal &&
+          typeof firstArg.value === "string"
+        ) {
+          routes = firstArg.value;
+        } else if (firstArg.type === AST_NODE_TYPES.ArrayExpression) {
+          const strings = firstArg.elements.filter(
+            (element): element is TSESTree.Literal =>
+              !!element &&
+              element.type === AST_NODE_TYPES.Literal &&
+              typeof element.value === "string",
+          );
 
-        if (recieved !== expected) {
+          if (strings.length === 0) return;
+
+          routes = strings.map((element) => element.value as string);
+        } else {
+          return;
+        }
+
+        const expected = getMethodName(httpMethod, routes);
+
+        if (received !== expected) {
           context.report({
             node: node.key,
             messageId: "matchMethodsToRoutes",
@@ -84,6 +110,18 @@ export default createRule({
               definition: context.sourceCode.getText(decorator),
               expected,
             },
+            fix(fixer) {
+              return fixer.replaceText(node.key, expected);
+            },
+            suggest: [
+              {
+                messageId: "renameMethod",
+                data: { expected },
+                fix(fixer) {
+                  return fixer.replaceText(node.key, expected);
+                },
+              },
+            ],
           });
         }
       },
